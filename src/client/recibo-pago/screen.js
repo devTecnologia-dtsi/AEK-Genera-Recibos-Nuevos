@@ -11,7 +11,7 @@ import { SpanErrorComponents } from "../../components/SpanErrorComponents";
 import { TooltipComponents } from "../../components/TooltipComponents";
 import { urlPagoPSE } from "../../helpers/serviciosUrl";
 import { useAxiosEstudiantesNuevos } from "../../hooks/useAxiosEstudiantesNuevos";
-import { encrypt, keyEncryptDecrypt } from "../../helpers/EncryptDecryptHelper";
+import { encrypt, hideText, keyEncryptDecrypt } from "../../helpers/EncryptDecryptHelper";
 import {useAxiosSendEmails} from "../../hooks/useAxiosSendEmails";
 
 export default Screen = () => {
@@ -273,8 +273,9 @@ export default Screen = () => {
 
                 // si existe un correo personal realizo un envio a ese correo con la informacion
                 if (mail2 != "") {
+                    const mailOfuscado = hideText(mail2,1,4)
                     const mensaje = `Estimado usuario el sistema ha identificado que es necesario ingresar utilizando el perfil de Estudiante Antiguo.
-        para continuar el proceso, enviaremos una notificacion al correo personal ${mail} notificando su correo institucional. Si requiere realizar
+        para continuar el proceso, enviaremos una notificacion al correo personal ${mailOfuscado} notificando su correo institucional. Si requiere realizar
         cambio de contraseña puedes hacerlo a través del siguiente enlace: <a href="https://tuclave.uniminuto.edu/">https://tuclave.uniminuto.edu/</a>`
 
                     //encripto el correo alternativo
